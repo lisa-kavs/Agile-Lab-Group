@@ -29,7 +29,7 @@ def read_integer(prompt):
 
 
 def runners_data():
-    with open("runners.txt") as input:
+    with open("./Runners-1.txt") as input:
         lines = input.readlines()
     runners_name = []
     runners_id = []
@@ -93,7 +93,7 @@ def users_venue(races_location, runners_id):
     updated_runners = []
     for i in range(len(runners_id)):
         time_taken_for_runner = read_integer(f"Time for {runners_id[i]} >> ")
-        if time_taken_for_runner = 0:
+        if time_taken_for_runner == 0:
             time_taken.append(time_taken_for_runner)
             updated_runners.append(runners_id[i])
             print(f"{runners_id[i]},{time_taken_for_runner},", file=connection)
@@ -222,6 +222,7 @@ def displaying_runners_who_have_won_at_least_one_race(races_location, runners_na
 
 
 def main():
+
     races_location = race_venues()
     runners_name, runners_id = runners_data()
     MENU = "1. Show the results for a race \n2. Add results for a race \n3. Show all competitors by county " \
@@ -229,7 +230,7 @@ def main():
            "\n6. Show all competitors who have won a race \n7. Quit \n>>> "
     input_menu = read_integer_between_numbers(MENU, 1, 7)
 
-    while input_menu = 7:
+    while input_menu == 7:
         if input_menu == 1:
             id, time_taken, venue = race_results(races_location)
             fastest_runner = winner_of_race(id, time_taken)
@@ -248,6 +249,5 @@ def main():
         print()
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
-
 
 main()
