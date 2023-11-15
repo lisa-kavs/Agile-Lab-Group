@@ -78,7 +78,7 @@ def display_races(id, time_taken, venue, fastest_runner):
         minutes.append(time_taken[i] // MINUTE)
         seconds.append(time_taken[i] % MINUTE)
     for i in range(len(id)):
-        print(f"{id[i]:<10s} {minutes[i]} minutes and {seconds[i]} seconds")
+        print(f"{id[i]:<10s} {minutes[i]:.0f} minutes and {seconds[i]:.3f} seconds")
     print(f"{fastest_runner} won the race.")
 
 
@@ -101,7 +101,7 @@ def users_venue(races_location, runners_id):
 
 
 def updating_races_file(races_location):
-    connection = open(f"races.txt", "w")
+    connection = open(f"./Races-1.txt", "w")
     for i in range(len(races_location)):
         print(races_location[i], file=connection)
     connection.close()
@@ -222,7 +222,6 @@ def displaying_runners_who_have_won_at_least_one_race(races_location, runners_na
 
 
 def main():
-
     races_location = race_venues()
     runners_name, runners_id = runners_data()
     MENU = "1. Show the results for a race \n2. Add results for a race \n3. Show all competitors by county " \
