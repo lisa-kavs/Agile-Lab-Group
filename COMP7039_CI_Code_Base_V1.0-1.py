@@ -182,9 +182,10 @@ def sorting_where_runner_came_in_race(location, time):
         lines = input_type.readlines()
     time_taken = []
     for line in lines:
-        split_line = line.split(",".strip("\n"))
-        t = int(split_line[1].strip("\n"))
-        time_taken.append(t)
+        if line != "\n":
+            split_line = line.split(",".strip("\n"))
+            t = int(split_line[1].strip("\n"))
+            time_taken.append(t)
 
     time_taken.sort()
     return time_taken.index(time) + 1, len(lines)
@@ -252,6 +253,5 @@ def main():
         print()
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
-
 
 main()
