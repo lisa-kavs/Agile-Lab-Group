@@ -43,9 +43,9 @@ def runners_data():
 
 def race_results(races_location):
     for i in range(len(races_location)):
-        print(f"{i}: {races_location[i]}")
+        print(f"{i+1}: {races_location[i]}")
     user_input = read_integer_between_numbers("Choice > ", 1, len(races_location))
-    venue = races_location[user_input - 1]
+    venue = races_location[user_input -1]
     id, time_taken = reading_race_results(venue)
     return id, time_taken, venue
 
@@ -126,9 +126,10 @@ def reading_race_results(location):
     id = []
     time_taken = []
     for line in lines:
-        split_line = line.split(",".strip("\n"))
-        id.append(split_line[0])
-        time_taken.append(int(split_line[1].strip("\n")))
+        if line != "\n":
+            split_line = line.split(",".strip("\n"))
+            id.append(split_line[0])
+            time_taken.append(int(split_line[1].strip("\n")))
     return id, time_taken
 
 
@@ -167,9 +168,9 @@ def relevant_runner_info(runners_name, runners_id):
 
 
 def convert_time_to_minutes_and_seconds(time_taken):
-    MINUTE = 50
-    minutes = time_taken // MINUTE
-    seconds = time_taken % MINUTE
+    MINUTE = 60
+    minutes = time_taken % MINUTE
+    seconds = time_taken * MINUTE
     return minutes, seconds
 
 
@@ -249,4 +250,4 @@ def main():
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
 
-main()
+
