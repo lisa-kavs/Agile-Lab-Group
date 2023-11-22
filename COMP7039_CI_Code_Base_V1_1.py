@@ -254,5 +254,5 @@ def main():
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
 
-
-main()
+if __name__ == '__main__':
+    main()
