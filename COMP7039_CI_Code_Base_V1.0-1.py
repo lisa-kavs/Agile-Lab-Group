@@ -2,12 +2,12 @@ def read_integer_between_numbers(prompt, mini, maximum):
     while True:
         try:
             users_input = int(input(prompt))
-            if maximum <= users_input >= mini:
+            if maximum >= users_input >= mini:
                 return users_input
             else:
                 print(f"Numbers from {mini} to {maximum} only.")
         except ValueError:
-            print("Sorry -numbor olny please")
+            print("Sorry -number only please")
 
 
 def read_nonempty_string(prompt):
@@ -45,15 +45,15 @@ def runners_data():
 
 def race_results(races_location):
     for i in range(len(races_location)):
-        print(f"{i}: {races_location[i]}")
+        print(f"{i+1}: {races_location[i]}")
     user_input = read_integer_between_numbers("Choice > ", 1, len(races_location))
-    venue = races_location[user_input - 1]
+    venue = races_location[user_input -1]
     id, time_taken = reading_race_results(venue)
     return id, time_taken, venue
 
 
 def race_venues():
-    with open("races.txt") as input:
+    with open("Races-1.txt") as input:
         lines = input.readlines()
     races_location = []
     for line in lines:
@@ -128,9 +128,10 @@ def reading_race_results(location):
     id = []
     time_taken = []
     for line in lines:
-        split_line = line.split(",".strip("\n"))
-        id.append(split_line[0])
-        time_taken.append(int(split_line[1].strip("\n")))
+        if line != "\n":
+            split_line = line.split(",".strip("\n"))
+            id.append(split_line[0])
+            time_taken.append(int(split_line[1].strip("\n")))
     return id, time_taken
 
 
@@ -140,9 +141,10 @@ def reading_race_results_of_relevant_runner(location, runner_id):
     id = []
     time_taken = []
     for line in lines:
-        split_line = line.split(",".strip("\n"))
-        id.append(split_line[0])
-        time_taken.append(int(split_line[1].strip("\n")))
+        if line != "\n":
+            split_line = line.split(",".strip("\n"))
+            id.append(split_line[0])
+            time_taken.append(int(split_line[1].strip("\n")))
     for i in range(len(id)):
         if runner_id == id[i]:
             time_relevant_runner = time_taken[i]
@@ -169,9 +171,9 @@ def relevant_runner_info(runners_name, runners_id):
 
 
 def convert_time_to_minutes_and_seconds(time_taken):
-    MINUTE = 50
-    minutes = time_taken // MINUTE
-    seconds = time_taken % MINUTE
+    MINUTE = 60
+    minutes = time_taken % MINUTE
+    seconds = time_taken * MINUTE
     return minutes, seconds
 
 
@@ -251,4 +253,4 @@ def main():
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
 
-main()
+

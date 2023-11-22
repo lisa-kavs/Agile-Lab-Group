@@ -1,0 +1,28 @@
+read_nonempty_string(prompt):
+
+ This function executes correctly however and the functionality appears correct. 
+This function takes in a string as a parameter, this string is the prompt that is given to the user before they input data in the terminal.
+The input must be alpahbetical and greater than 0. this is checked with an if statement. No errors.
+
+race_venues():
+
+This function attempts to read the Races.txt file to read race venues into memory. It returns a FileNotFoundError due to a typo in the with open("filename.txt") line. "races.txt" needs to change to "Races.txt". Needs to be capitalised.
+Maybe update to separate location from target times.
+
+users_venue(races_location, runners_id):
+This function reads into memory some file for the location of a race based on user input. The input is checked against an existing file that stores race locations. To prevent the application from creating files for none existant races. It also takes in a list of runner id's and for each id input it asks the user to input their race time. The id's and their respective race times are then appended to the existing race location file. E.g. Kinsale.txt. No errors were found. Functionality appears sound for the purposes of this application.
+
+read_integer_between_numbers(prompt, mini, maximum):
+This function takes in a string to be a prompt to be displayed to the user and two figures. A maximum and minium that the user input needs to fit between. There is an error in the if statement where the check between user_input and maximum checks if max is < (less than) user_input this needs to be changed to > (greater than)
+
+competitors_by_county(name, id):
+This function takes in runner names and their id's and prints them out based on the county they are running from. This function works correctly however, it only checks for runners from Cork and Kerry. There are runners from other counties and functionality to check for them also may need to be added.
+
+reading_race_results_of_relevant_runner(location, runner_id):
+This function takes in a race location and a runner id and checks if the runner ran in it. If so it returns the runners time. It almost functions correctly but the location txt files skip the first line and this breaks the code. The Kinsale.txt file needs to be updated to strip the first line or the code to avoid this issue.
+
+displaying_race_times_one_competitor(races_location, runner, id):
+This function takes in a race_location file, a runner and their id. Checks if the runner has raced in it with an external function if so time is retrieved. Time is processed into minutes and seconds. They are then sorted for their place in race and their number in race with an external funciton and these results are printed for each race the runner was in. No bugs or issues with this function.
+
+displaying_runners_who_have_won_at_least_one_race(races_location, runners_name, runners_id):
+This function takes in arrays of racers in a particular location,  runners names  and their id's. It finds the id's and their's times for runners in the race location. It then finds the faster runner and their name. It then enumerates over all winners and displays their name and id. No issues with this function as logic is outsourced to other functions.
