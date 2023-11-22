@@ -127,6 +127,29 @@ def displaying_runners_who_have_won_at_least_one_race(races_location, runners_na
         print(f"{runners[i]} ({fastest_runner})")
 
 
+def relevant_runner_info(runners_name, runners_id):
+    for i in range(len(runners_name)):
+        print(f"{i + 1}: {runners_name[i]}")
+    user_input = read_integer_between_numbers("Which Runner > ", 1, len(runners_name))
+    runner = runners_name[user_input - 1]
+    id = runners_id[user_input -1]
+    return runner, id
+
+
+def runners_data():
+    with open("./Runners-1.txt") as input:
+        lines = input.readlines()
+    runners_name = []
+    runners_id = []
+    for line in lines:
+        split_line = line.split(",")
+        runners_name.append(split_line[0])
+        id = split_line[1].strip("\n")
+        runners_id.append(id)
+    return runners_name, runners_id
+
+
 def test():
-    print(reading_race_results_of_relevant_runner("Kinsale", "KY-43"))
+    runners, id = runners_data()
+    print(relevant_runner_info(runners, id))
 test()
