@@ -7,7 +7,7 @@ def read_integer_between_numbers(prompt, mini, maximum):
             else:
                 print(f"Numbers from {mini} to {maximum} only.")
         except ValueError:
-            print("Sorry - number only please")
+            print("Sorry -number only please")
 
 
 def read_nonempty_string(prompt):
@@ -55,8 +55,7 @@ def race_venues():
         lines = input.readlines()
     races_location = []
     for line in lines:
-        split_line = line.split(",")
-        races_location.append(split_line[0].strip("\n"))
+        races_location.append(line.strip("\n"))
     return races_location
 
 
