@@ -9,6 +9,7 @@ def read_integer_between_numbers(prompt, mini, maximum):
         except ValueError:
             print("Sorry -numbor olny please")
 
+
 def read_nonempty_string(prompt):
     while True:
         users_input = input(prompt)
@@ -28,7 +29,7 @@ def read_integer(prompt):
 
 
 def runners_data():
-    with open("runners.txt") as input:
+    with open("./Runners-1.txt") as input:
         lines = input.readlines()
     runners_name = []
     runners_id = []
@@ -50,7 +51,7 @@ def race_results(races_location):
 
 
 def race_venues():
-    with open("races.txt") as input:
+    with open("Races.txt") as input:
         lines = input.readlines()
     races_location = []
     for line in lines:
@@ -77,7 +78,7 @@ def display_races(id, time_taken, venue, fastest_runner):
         minutes.append(time_taken[i] // MINUTE)
         seconds.append(time_taken[i] % MINUTE)
     for i in range(len(id)):
-        print(f"{id[i]:<10s} {minutes[i]} minutes and {seconds[i]} seconds")
+        print(f"{id[i]:<10s} {minutes[i]:.0f} minutes and {seconds[i]:.3f} seconds")
     print(f"{fastest_runner} won the race.")
 
 
@@ -92,7 +93,7 @@ def users_venue(races_location, runners_id):
     updated_runners = []
     for i in range(len(runners_id)):
         time_taken_for_runner = read_integer(f"Time for {runners_id[i]} >> ")
-        if time_taken_for_runner = 0:
+        if time_taken_for_runner == 0:
             time_taken.append(time_taken_for_runner)
             updated_runners.append(runners_id[i])
             print(f"{runners_id[i]},{time_taken_for_runner},", file=connection)
@@ -100,7 +101,7 @@ def users_venue(races_location, runners_id):
 
 
 def updating_races_file(races_location):
-    connection = open(f"races.txt", "w")
+    connection = open(f"./Races-1.txt", "w")
     for i in range(len(races_location)):
         print(races_location[i], file=connection)
     connection.close()
@@ -228,7 +229,7 @@ def main():
            "\n6. Show all competitors who have won a race \n7. Quit \n>>> "
     input_menu = read_integer_between_numbers(MENU, 1, 7)
 
-    while input_menu = 7:
+    while input_menu == 7:
         if input_menu == 1:
             id, time_taken, venue = race_results(races_location)
             fastest_runner = winner_of_race(id, time_taken)
@@ -248,3 +249,4 @@ def main():
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
 
+main()
