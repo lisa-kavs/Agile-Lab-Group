@@ -57,7 +57,8 @@ def race_venues():
         lines = input.readlines()
     races_location = []
     for line in lines:
-        races_location.append(line.strip("\n"))
+        split_line = line.split(",")
+        races_location.append(split_line[0].strip("\n"))
     return races_location
 
 
@@ -95,7 +96,7 @@ def users_venue(races_location, runners_id):
     updated_runners = []
     for i in range(len(runners_id)):
         time_taken_for_runner = read_integer(f"Time for {runners_id[i]} >> ")
-        if time_taken_for_runner == 0:
+        if time_taken_for_runner != 0:
             time_taken.append(time_taken_for_runner)
             updated_runners.append(runners_id[i])
             print(f"{runners_id[i]},{time_taken_for_runner},", file=connection)
@@ -182,10 +183,9 @@ def sorting_where_runner_came_in_race(location, time):
         lines = input_type.readlines()
     time_taken = []
     for line in lines:
-        if line != "\n":
-            split_line = line.split(",".strip("\n"))
-            t = int(split_line[1].strip("\n"))
-            time_taken.append(t)
+        split_line = line.split(",".strip("\n"))
+        t = int(split_line[1].strip("\n"))
+        time_taken.append(t)
 
     time_taken.sort()
     return time_taken.index(time) + 1, len(lines)
@@ -234,7 +234,7 @@ def main():
            "\n6. Show all competitors who have won a race \n7. Quit \n>>> "
     input_menu = read_integer_between_numbers(MENU, 1, 7)
 
-    while input_menu == 7:
+    while input_menu != 7:
         if input_menu == 1:
             id, time_taken, venue = race_results(races_location)
             fastest_runner = winner_of_race(id, time_taken)
@@ -254,4 +254,5 @@ def main():
         input_menu = read_integer_between_numbers(MENU, 1, 7)
     updating_races_file(races_location)
 
-main()
+if __name__ == '__main__':
+    main()
