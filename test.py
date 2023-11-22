@@ -35,10 +35,8 @@ def race_venues():
         lines = input.readlines()
     races_location = []
     for line in lines:
-        split_line = line.split(",")
-        races_location.append(split_line[0].strip("\n"))
+        races_location.append(line.strip("\n"))
     return races_location
-
 
 
 
@@ -128,38 +126,7 @@ def displaying_runners_who_have_won_at_least_one_race(races_location, runners_na
     for i, fastest_runner in enumerate(winners):
         print(f"{runners[i]} ({fastest_runner})")
 
-def displaying_winners_of_each_race(races_location):
-    print("Venue             Winner")
-    print("="*24)
-    for i in range(len(races_location)):
-        id, time_taken = reading_race_results(races_location[i])
-        fastest_runner = winner_of_race(id, time_taken)
-        print(f"{races_location[i]:<18s}{fastest_runner}")
-
-
-
-def winner_of_race(id, time_taken):
-    quickest_time = min(time_taken)
-    winner = ""
-    for i in range(len(id)):
-        if quickest_time == time_taken[i]:
-            winner = id[i]
-    return winner
-
-
-def reading_race_results(location):
-    with open(f"{location}.txt") as input_type:
-        lines = input_type.readlines()
-    id = []
-    time_taken = []
-    for line in lines:
-        split_line = line.split(",".strip("\n"))
-        id.append(split_line[0])
-        time_taken.append(int(split_line[1].strip("\n")))
-    return id, time_taken
-
 
 def test():
-    locations = race_venues()
-    displaying_winners_of_each_race(locations)
+    print(reading_race_results_of_relevant_runner("Kinsale", "KY-43"))
 test()
