@@ -82,7 +82,7 @@ def test_reading_race_results(mock_open):
     assert codebase.reading_race_results("Location") == (["ID1", "ID2"], [30, 45])
 
 # Test 12: reading_race_results_of_relevant_runner
-@patch('builtins.open', return_value=StringIO("ID1,30\nID2,45\n"))
+@patch('builtins.open', new_callable=mock_open, read_data="ID1,30\nID2,45\n")
 def test_reading_race_results_of_relevant_runner(mock_open):
     assert codebase.reading_race_results_of_relevant_runner("Location", "ID1") == 30
     assert codebase.reading_race_results_of_relevant_runner("Location", "ID3") is None
