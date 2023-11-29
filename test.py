@@ -1,5 +1,4 @@
-import COMP7039_CI_Code_Base_V1_1 as codebase
-import pytest
+import codebase as codebase
 from unittest.mock import patch, mock_open
 from io import StringIO
 
