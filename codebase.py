@@ -173,8 +173,8 @@ def relevant_runner_info(runners_name, runners_id):
 
 def convert_time_to_minutes_and_seconds(time_taken):
     MINUTE = 60
-    minutes = time_taken % MINUTE
-    seconds = time_taken * MINUTE
+    minutes = time_taken // MINUTE
+    seconds = time_taken % MINUTE
     return minutes, seconds
 
 
