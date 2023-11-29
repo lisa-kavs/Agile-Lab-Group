@@ -105,7 +105,7 @@ def test_relevant_runner_info(mock_read_integer):
 def test_convert_time_to_minutes_and_seconds():
     minutes, seconds = codebase.convert_time_to_minutes_and_seconds(90)
     assert minutes == 1
-    assert seconds == 5400
+    assert seconds == 30
 
 # Test 16: sorting_where_runner_came_in_race
 @patch('builtins.open', return_value=StringIO("ID1,30\nID2,45\nID3,60\n"))
