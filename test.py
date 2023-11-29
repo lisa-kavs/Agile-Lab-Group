@@ -58,12 +58,12 @@ def test_display_races(mock_print):
     mock_print.assert_called()
 
 # Test 8: users_venue
-@patch('codebase.read_nonempty_string', return_value='NewVenue')
+@patch('codebase.read_nonempty_string', return_value='Newvenue')
 @patch('codebase.read_integer', side_effect=[120, 0])
 @patch('builtins.open', new_callable=mock_open)
 def test_users_venue(mock_open, mock_read_integer, mock_read_string):
     codebase.users_venue(["Venue1"], ["ID1", "ID2"])
-    mock_open.assert_called_with('NewVenue.txt', 'a')
+    mock_open.assert_called_with('Newvenue.txt', 'a')
 
 # Test 9: updating_races_file
 @patch('builtins.open', new_callable=mock_open)
