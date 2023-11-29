@@ -1,4 +1,4 @@
-import codebase as codebase
+import codebase
 from unittest.mock import patch, mock_open
 from io import StringIO
 
